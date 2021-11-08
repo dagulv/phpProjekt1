@@ -12,14 +12,14 @@ $connection = dbConnect();
 // Visar alla kunder
 $allLogins = getCustomerLogin($connection);
 //Hämtar användare och lösenord från formuläret
-$checkUser = $_POST['txtUser'];
-$checkPass = $_POST['txtPassword'];
+$checkUser = mysqli_real_escape_string($_POST['txtUser']);
+$checkPass = mysqli_real_escape_string($_POST['txtPassword']);
 
 //Kontrollera sessionen
 if ($allLogins):
     while ($login = mysqli_fetch_array($allLogins)):
         if($checkUser == $login['customerEmail'] && password_verify($checkPass, $login['customerPassword'])) {
-            $_SESSION['loggedIn'] = true;
+            $_SESSION['isLoggedIn'] = true;
             $_SESSION['username'] = $login['customerName'];
             $_SESSION['role'] = 'Kund';
             header("Location: welcome.php");
@@ -29,4 +29,5 @@ if ($allLogins):
 else:
     header("Location: login.php?invalid_login");
 endif;
+mysqli_close($connection);
 ?>

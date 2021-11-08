@@ -1,7 +1,7 @@
 <?php
 session_start();
 session_unset();
-$_SESSION['loggedIn'] = false;
+$_SESSION['isLoggedIn'] = false;
 
 header('Location: index.php');
 exit;
