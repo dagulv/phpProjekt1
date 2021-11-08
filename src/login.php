@@ -17,6 +17,9 @@
     ?>
     <form action="checklogin.php" method="post">
         <h1>Logga in</h1>
+        <div><input type="radio" name="radioType" id="radioEmployee" value="Anställd"><label for="radioEmployee">Anställd</label></div>
+        <div><input type="radio" name="radioType" id="radioCustomer" value="Kund"><label for="radioCustomer">Kund</label></div>
+        <br>
 		<label>Email</label>
         <p><input type="email" name="txtUser"></p>
 
@@ -29,5 +32,6 @@
 
     <p>Ny användare?</p>
     <a href="customer/customer_create.php">Skapa login</a>
+    <a href="index.php">index</a>
 </body>
 </html>

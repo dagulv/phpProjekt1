@@ -2,6 +2,10 @@
 /* 
     Visar alla kunder
 */
+if (!isset($_SESSION['isLoggedInEmployees'])) {
+    header('Location: ../login.php');
+    return;
+}
 
 // Inkludera filer för databaskoppling och funktioner
 require("../includes/conn_mysql.php");
@@ -34,7 +38,9 @@ $allCustomers = getAllCustomers($connection);
                     <a href="customer_delete.php?deleteID=<?php echo $item['customerID'] ?>">Radera</a>
                 </li>
             <?php endwhile; ?>
-            <p><a href="customer_create.php">Lägg till kund</a></p>
+            <?php if (isset($_SESSION['isLoggedInEmployee'])) {?>
+                <p><a href="customer_create.php">Lägg till kund</a></p>
+                <?php } ?>
         </ul>
         <?php
             // Stänger databaskopplingen

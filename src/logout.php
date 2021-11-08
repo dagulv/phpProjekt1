@@ -1,10 +1,15 @@
 <?php
 session_start();
+if (!isset($_SESSION['isLoggedInCustomer']) && !isset($_SESSION['isLoggedInEmployee'])) {
+    header('Location: index.php');
+    return;
+}
+
 session_unset();
-$_SESSION['isLoggedIn'] = false;
+// $_SESSION['isLoggedInCustomer'] = false;
 
 header('Location: index.php');
-exit;
+// exit;
 
 /*
 session_start();

@@ -2,7 +2,10 @@
 /*
   Raderar book
 */
-
+if (!isset($_SESSION['isLoggedInEmployee'])) {
+  header('Location: ../login.php');
+  return;
+}
 // Inkludera filer för databaskoppling och funktioner
 require("../includes/conn_mysql.php");
 require("../includes/book_functions.php");

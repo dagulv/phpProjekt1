@@ -1,14 +1,51 @@
+*,*::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header {
+    padding-top: 1.5%;
+    width: 100vw;
+    height: 100px;
+    background-color: antiquewhite;
+}
+
+.headContent {
+    float: left;
+    margin-left: 1vw;
+}
+
+.headContent a {
+    margin-right: 20px;
+}
+.headLink {
+    float: right;
+}
+
+.headLogin {
+    float: right;
+    width: 100px;
+    height: auto;
+    margin-right: 1vw;
+    background-color: rgb(140, 189, 235);
+    border: 10px solid rgb(140, 189, 235);
+    border-radius: 5px;
+}
+
 #loginStatus {
-    font-size: 20px;
+    font-size: 40px;
+    background-color: aquamarine;
+    
+    height: auto;
 }
 .indexBox {
-    background-color: antiquewhite;
+    background-color: pink;
     width: 120px;
     height: auto;
     padding: 10px;
 }
 .bookCreate {
-    background-color: antiquewhite;
+    background-color: red;
     width: 120px;
     height: auto;
     padding: 10px;
@@ -16,9 +53,18 @@
 }
 
 .categoryBox {
-    background-color: antiquewhite;
+    background-color: red;
     width: 120px;
     height: auto;
     padding: 10px;
     float: right;
+}
+.footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+.footer-content{
+    text-align: center;
+    background-color: antiquewhite;
 }

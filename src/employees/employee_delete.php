@@ -2,6 +2,10 @@
 /*
   Raderar customer
 */
+if (!isset($_SESSION['isLoggedInEmployee'])) {
+  header('Location: ../login.php');
+  return;
+}
 
 // Inkludera filer för databaskoppling och funktioner
 require("../includes/conn_mysql.php");

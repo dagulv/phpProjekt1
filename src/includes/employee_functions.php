@@ -21,10 +21,13 @@ function saveEmployee($conn) {
     $name = escapeInsert($conn, $_POST['txtName']);
     $password = escapeInsert($conn, $_POST['txtPassword']);
     $role = escapeInsert($conn, $_POST['txtRole']);
+    $email = escapeInsert($conn, $_POST['txtEmail']);
+
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
     $query = "INSERT INTO employee (
-        employeeName, employeePassword, roleID
-    )   VALUES('$name', '$password', '$role')";
+        employeeName, employeePassword, roleID, employeeEmail
+    )   VALUES('$name', '$passwordHash', '$role', '$email')";
 
     $result = mysqli_query($conn, $query) or die("Query failed: $query");
 
@@ -47,4 +50,6 @@ function updateEmployee($conn) {
     
     $result = mysqli_query($conn, $query) or die("Query failed: $query");
 }
+
+
 ?>

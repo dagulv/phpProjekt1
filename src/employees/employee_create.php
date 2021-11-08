@@ -2,6 +2,11 @@
 /*
   Raderar anställd
 */
+session_start();
+if (!isset($_SESSION['isLoggedInEmployee'])) {
+  header('Location: ../login.php');
+  return;
+}
 
 // Inkludera filer för databaskoppling och funktioner
 require("../includes/conn_mysql.php");
@@ -38,11 +43,14 @@ if(isset($_POST['isnew']) && $_POST['isnew'] == 1){
             <label>Namn:</label>
             <p><input type="text" name="txtName" placeholer="Namn"></p>
 
+            <label>Email:</label>
+            <p><input type="text" name="txtEmail" placeholer="Email"></p>
+
             <label>Lösenord:</label>
             <p><input type="text" name="txtPassword" placeholer="lösenord"></p>
             
             <label>Roll:</label>
-            <p><input type="text" name="txtRole" placeholer="Roll"></p>
+            <p><input type="text" name="txtRole" placeholer="Roll" value="1"></p>
 
             <p><input type="submit" value="Lägg till"></p>
         </form>

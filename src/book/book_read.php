@@ -2,6 +2,10 @@
 /* 
     Visar alla kunder
 */
+if (!isset($_SESSION['isLoggedInCustomer']) && !isset($_SESSION['isLoggedInEmployee'])) {
+    header('Location: ../login.php');
+    return;
+}
 
 // Inkludera filer för databaskoppling och funktioner
 require("../includes/conn_mysql.php");
@@ -33,7 +37,9 @@ $allbooks = getAllbooks($connection);
                     <th><a href="book_delete.php?deleteID=<?php echo $item['bookID'] ?>">Radera</a></th>
                 </tr>
             <?php endwhile; ?>
-            <p><a href="book_create.php">Lägg till bok</a></p>
+            <?php if (isset($_SESSION['isLoggedInEmployee'])) {?>
+                <p><a href="book_create.php">Lägg till bok</a></p>
+                <?php } ?>
                 </table>
         <?php
             // Stänger databaskopplingen
