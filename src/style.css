@@ -1,0 +1,24 @@
+#loginStatus {
+    font-size: 20px;
+}
+.indexBox {
+    background-color: antiquewhite;
+    width: 120px;
+    height: auto;
+    padding: 10px;
+}
+.bookCreate {
+    background-color: antiquewhite;
+    width: 120px;
+    height: auto;
+    padding: 10px;
+    float: left;
+}
+
+.categoryBox {
+    background-color: antiquewhite;
+    width: 120px;
+    height: auto;
+    padding: 10px;
+    float: right;
+}
