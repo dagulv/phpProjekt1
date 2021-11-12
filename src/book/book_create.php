@@ -1,14 +1,22 @@
 <?php
-/*
-  Raderar book
-*/
+session_start();
+
+// Inkludera filer för databaskoppling och funktioner
+require("../includes/conn_mysql.php");
+require("../includes/book_functions.php");
+
 if (!isset($_SESSION['isLoggedInEmployee'])) {
   header('Location: ../login.php');
   return;
 }
-// Inkludera filer för databaskoppling och funktioner
-require("../includes/conn_mysql.php");
-require("../includes/book_functions.php");
+
+if(isset($_POST['isnew']) && $_POST['isnew'] == 1){
+  $savebook = saveBook($connection);
+
+  header("Location: book_read.php");
+}
+
+require('../header.php');
 
 // Skapa databaskoppling
 $connection = dbConnect();
@@ -17,24 +25,10 @@ $connection = dbConnect();
 if(isset($_GET['deleteID']) && $_GET['deleteID'] > 0){
   $isDeleteID = $_GET['deleteID'];
 }
-
-// Skall kunden uppdateras?
-if(isset($_POST['isnew']) && $_POST['isnew'] == 1){
-  $savebook = saveBook($connection);
-
-  header("Location: book_read.php");
-}
 ?>
-<!DOCTYPE HTML>
-<html lang="sv">
-    <head>
-        <meta charset="utf-8" />
-        <title>Bok - Lägg till</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-
-    <body>
-        <h1>Ny bok</h1>
+  
+  <main>
+      <h1>Ny bok</h1>
         
       <div class="bookCreate">
         <form method="post">
@@ -98,9 +92,13 @@ if(isset($_POST['isnew']) && $_POST['isnew'] == 1){
         </div>
 
         <a href="book_read.php">Avbryt</a>
+  </main>  
+        
         <?php
         // Stänger databasen
         dbDisconnect($connection);
         ?>
-    </body>
-</html>
+        
+                <?php
+                  require("../footer.php");
+                ?>
