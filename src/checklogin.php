@@ -1,7 +1,8 @@
 <?php
-//Startar upp sessionen
+// Startar upp sessionen
 session_start();
-//Användare och lösenord för sidan ändra till customer användare
+
+// Användare och lösenord för sidan ändra till customer användare
 // Inkludera filer för databaskoppling och funktioner
 require("includes/conn_mysql.php");
 require("includes/item_functions.php");
@@ -19,7 +20,7 @@ $checkPass = mysqli_real_escape_string($connection, $_POST['txtPassword']);
 
 $radio = $_POST['radioType'];
 
-//Kontrollera sessionen
+// Kontrollera sessionen
 if ($radio=="Kund"):
     if ($allCustomerLogins):
         while ($login = mysqli_fetch_array($allCustomerLogins)):
@@ -27,7 +28,9 @@ if ($radio=="Kund"):
                 session_unset();
                 $_SESSION['isLoggedInCustomer'] = true;
                 $_SESSION['username'] = $login['customerName'];
+                $_SESSION['id'] = $login['customerID'];
                 $_SESSION['role'] = $radio;
+                $_SESSION['borrowArray'] = array();
                 header("Location: welcome.php");
                 exit;
             }
@@ -42,6 +45,7 @@ elseif ($radio=="Anställd"):
                 session_unset();
                 $_SESSION['isLoggedInEmployee'] = true;
                 $_SESSION['username'] = $login['employeeName'];
+                $_SESSION['id'] = $login['employeeID'];
                 $_SESSION['role'] = $radio;
                 header("Location: welcome.php");
                 exit;

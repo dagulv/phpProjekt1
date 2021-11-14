@@ -4,10 +4,12 @@
     box-sizing: border-box;
 }
 .header {
-    padding-top: 1.5%;
-    width: 100vw;
+    width: 100%;
     height: 100px;
     background-color: antiquewhite;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .headContent {
@@ -15,11 +17,20 @@
     margin-left: 1vw;
 }
 
+
 .headContent a {
-    margin-right: 20px;
+    margin-right: 30px;
+    color: black;
+    text-decoration: none;
 }
 .headLink {
     float: right;
+}
+
+.button {
+    padding: 1rem;
+    background-color: rgb(48, 146, 192);
+    border-radius: 10ch;
 }
 
 .headLogin {
@@ -33,38 +44,31 @@
 }
 
 #loginStatus {
-    font-size: 40px;
+    font-size: 60px;
     background-color: aquamarine;
-    
-    height: auto;
+    height: 100px;
+    display: flex;
+    align-items: center;
 }
-.indexBox {
-    background-color: pink;
-    width: 120px;
-    height: auto;
-    padding: 10px;
-}
+
 .bookCreate {
-    background-color: red;
-    width: 120px;
-    height: auto;
     padding: 10px;
     float: left;
 }
 
 .categoryBox {
-    background-color: red;
-    width: 120px;
-    height: auto;
-    padding: 10px;
+    padding-right: 60%;
     float: right;
+}
+
+#bookDescription {
+    background-color: rgb(236, 236, 236);
+    height: auto;
+    width: 400px;
 }
 .footer {
     position: absolute;
     width: 100%;
-    bottom: 0px;
-}
-.footer-content{
-    text-align: center;
-    background-color: antiquewhite;
+    bottom: -10px;
+    z-index: -1;
 }

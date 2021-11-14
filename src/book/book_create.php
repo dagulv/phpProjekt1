@@ -5,6 +5,11 @@ session_start();
 require("../includes/conn_mysql.php");
 require("../includes/book_functions.php");
 
+
+// Skapa databaskoppling
+$connection = dbConnect();
+
+
 if (!isset($_SESSION['isLoggedInEmployee'])) {
   header('Location: ../login.php');
   return;
@@ -18,8 +23,6 @@ if(isset($_POST['isnew']) && $_POST['isnew'] == 1){
 
 require('../header.php');
 
-// Skapa databaskoppling
-$connection = dbConnect();
 
 // Ska kunden redigeras?
 if(isset($_GET['deleteID']) && $_GET['deleteID'] > 0){

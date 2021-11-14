@@ -58,7 +58,7 @@ function updateCustomer($conn) {
 
 /* Hämta inlogg */
 function getCustomerLogin($conn){
-    $query = "SELECT customer.customerName, customer.customerEmail, customer.customerPassword FROM customer";
+    $query = "SELECT customer.customerID, customer.customerName, customer.customerEmail, customer.customerPassword FROM customer";
     $result = mysqli_query($conn, $query) or die("Query failed: $query");
 
     return $result;

@@ -12,7 +12,7 @@ function getAllItems($conn, $itemIDName, $table){
 /* Hämta logins */
 
 function getLogins($conn, $tableType){
-    $query = "SELECT ".$tableType.".".$tableType."Name, ".$tableType."Email, ".$tableType.".".$tableType."Password FROM ".$tableType;
+    $query = "SELECT ".$tableType.".".$tableType."ID, ".$tableType.".".$tableType."Name, ".$tableType."Email, ".$tableType.".".$tableType."Password FROM ".$tableType;
     $result = mysqli_query($conn, $query) or die("Query failed: $query");
 
     return $result;

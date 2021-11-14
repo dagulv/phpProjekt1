@@ -11,6 +11,17 @@ function deleteBook($conn, $bookID) {
     return deleteItem($conn, 'bookID', $bookID, 'book');
 }
 
+function getBookwithCategory($conn, $itemID) {
+    $query = "SELECT *, category.categoryName FROM book
+                        LEFT JOIN category ON book.categoryID = category.categoryID
+                        WHERE bookID=". $itemID;
+    
+    $result = mysqli_query($conn, $query) or die("Query failed: $query");
+
+    $item = mysqli_fetch_assoc($result);
+
+    return $item;
+}
 
 /*
     Spara en kund
@@ -48,9 +59,27 @@ function updateBook($conn) {
     $quantity = (int)$_POST['txtQuantity'];
     $editID = $_POST['updateID'];
 
+    $title = str_replace("'", "''", "$title");
+    $description = str_replace("'", "''", "$description");
     $query = "UPDATE book
                         SET bookTitle='$title', bookAuthor='$author', CategoryID='$categoryID', bookPublished='$published', bookPrice='$price', bookDescription='$description', bookIsbn='$isbn', bookQuantity='$quantity'
                         WHERE bookID = ". $editID;
     $result = mysqli_query($conn, $query) or die("Query failed: $query");
+}
+
+/* Bok räknare */
+function counterBook($id, $conn) {
+    $query = "SELECT bookQuantity FROM book WHERE bookID=".$id;
+    $quantity = mysqli_query($conn, $query) or die("Query failed: $query");
+    $quantity = (int)$quantity->fetch_array()[0] ?? '';
+    return $quantity;
+}
+/* Låna bok */
+function borrowBook($id, $conn) {
+    $quantity = counterBook($id, $conn);
+    $quantity = $quantity - 1;
+    $query = "UPDATE book SET bookQuantity = '$quantity' WHERE bookID=".$id;
+    $result = mysqli_query($conn, $query) or die("Query failed: $query");
+
 }
 ?>
